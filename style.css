@@ -1,0 +1,194 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 2040px;
+    height: 800px;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    display: flex; /* 使用flex布局 */
+}
+
+#video-container {
+    position: relative;
+    width: 1410px; /* 视频容器宽度调整为80% */
+    height: 800px; /* 占据视口高度的80% */
+    background-color: black;
+}
+
+#video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#right-module {
+    width: 690px; /* 小模块宽度设置为20% */
+    height: 500px; /* 高度与视频容器一致 */
+    background-color: #e0e0e0; /* 可以根据需要调整背景颜色 */
+    margin-left: 0px; /* 与视频容器之间留出一些间距 */
+    padding: 0px; /* 内边距，方便放置内容 */
+    box-sizing: border-box; /* 确保内边距不会影响整体宽度 */
+}
+
+
+
+.video-panel {
+    width: 690px;          /* 容器固定宽度 */
+    height: 300px;         /* 容器固定高度 */
+    margin: 0 auto;        /* 水平居中 */
+    background: #000;      /* 黑色背景 */
+    display: flex;         /* 使用flex布局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center;   /* 垂直居中 */
+    overflow: hidden;      /* 隐藏溢出内容 */
+}
+
+/* 视频元素设置 */
+.panel-video {
+    max-width: 100%;       /* 最大宽度不超过容器 */
+    max-height: 100%;      /* 最大高度不超过容器 */
+    object-fit: contain;   /* 保持比例完整显示（不裁剪） */
+    display: block;        /* 块级元素 */
+}
+
+/* 消息通用样式 */
+    .message {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+    }
+
+    .user-message {
+      justify-content: flex-end;
+      text-align: right;
+    }
+
+    .ai-message {
+      justify-content: flex-start;
+      text-align: left;
+    }
+
+    .user-message img,
+    .ai-message img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin: 0 8px;
+    }
+
+    .user-message img {
+      order: 2;
+    }
+
+    .user-message div,
+    .ai-message div {
+      max-width: 60%;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    .user-message div {
+      background: #d4f0ff;
+    }
+
+    .ai-message div {
+      background: #eaeaea;
+    }
+
+/* 图片样式 */
+.chat-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 思维导图容器 */
+.jsmind-container {
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    background: white;
+}
+
+/* 图片放大样式 */
+.chat-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: zoom-in;
+    transition: transform 0.2s;
+    transform-origin: top left; /* 确保从左上角开始放大 */
+}
+
+.chat-image.zoomed {
+    transform: scale(1.5);
+    cursor: zoom-out;
+    z-index: 100;
+    position: relative;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    max-width: none; /* 取消最大宽度限制 */
+    margin: 20px 0; /* 增加边距避免重叠 */
+}
+
+/* 修改聊天框样式确保有足够空间 */
+#chat-box {
+    height: 70%;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 15px; /* 增加内边距 */
+    margin-bottom: 10px;
+    background: #f5f5f5;
+    position: relative; /* 为绝对定位的放大图片提供参考 */
+}
+
+/* 图片容器新增样式 */
+.image-container {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    overflow: visible; /* 允许内容溢出 */
+    margin: 10px 0;
+}
+
+
+.bottom-frame {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 180px;
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+
+
+}
+
+.frame-content {
+    text-align: center;
+    font-size:40px; /* 调整为更合适的字号 */
+    line-height: 1.5;
+    width: 100%;
+}
+
+.frame-content p {
+    margin: 0.3em 0; /* 调整段落间距 */
+    padding: 0 20px; /* 添加左右内边距防止文字贴边 */
+}
+
+/* 确保聊天框不会被底部框架遮挡 */
+.chat-box {
+    padding-bottom: 200px; /* 增加更多底部间距 */
+}

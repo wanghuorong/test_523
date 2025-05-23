@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/jsmind@0.5.1/style/jsmind.css" />
+    <script src="https://unpkg.com/jsmind@0.5.1/js/jsmind.js"></script>
+    <script src="https://unpkg.com/jsmind@0.5.1/js/jsmind.draggable.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频聊天助手</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="界面.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    <div id="video-container">
+        <video id="video-player" controls>
+             <source src="美食.mp4" type="video/mp4">
+            您的浏览器不支持视频标签。
+        </video>
+    </div>
+
+    <div id="right-module">
+        <h3>AI聊天窗口</h3>
+        <div id="chat-box" style="height: 70%; overflow-y: auto; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; background: #f5f5f5;">
+            <!-- 聊天内容将在这里显示 -->
+        </div>
+        <!-- 模式选择按钮 -->
+        <div style="margin-bottom: 10px; display: flex; justify-content: space-between; gap: 5px;">
+            <button class="mode-button" data-mode="less" style="flex: 1;">回复</button>
+            <button class="mode-button" data-mode="mindmap" style="flex: 1;">思维导图</button>
+        </div>
+
+        <!-- 输入框和发送按钮 -->
+        <div style="display: flex; gap: 5px;">
+            <input type="text" id="message-input" placeholder="输入您的问题..." style="flex: 1; padding: 10px; box-sizing: border-box;">
+            <button id="send-button" style="padding: 10px 20px;">发送</button>
+        </div>
+
+<div class="video-panel" id="virtual-companion-panel">
+    <!-- 美观的按钮式初始状态 -->
+    <div id="placeholder" class="companion-prompt" style="cursor: pointer;">
+        <button class="generate-companion-btn">
+            <svg class="gradient-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <defs>
+                    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#4facfe" />
+                        <stop offset="100%" stop-color="#00f2fe" />
+                    </linearGradient>
+                </defs>
+                <path stroke="url(#iconGradient)" stroke-width="2" d="M12 2a10 10 0 0 0-7.38 16.75"></path>
+                <path stroke="url(#iconGradient)" stroke-width="2" d="M12 2a10 10 0 0 1 7.38 16.75"></path>
+                <path stroke="url(#iconGradient)" stroke-width="2" d="M12 2v20"></path>
+                <path stroke="url(#iconGradient)" stroke-width="2" d="M2 12h20"></path>
+            </svg>
+            <span class="btn-text">点击生成你的虚拟学伴</span>
+        </button>
+    </div>
+
+    <!-- 生成后显示的虚拟人物 (初始隐藏) -->
+    <div id="virtual-companion" style="display: none;"></div>
+</div>
+
+<style>
+    /* 按钮样式 */
+    .generate-companion-btn {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* 图标样式 */
+    .gradient-icon {
+        width: 60px;
+        height: 60px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    /* 文字样式 */
+    .btn-text {
+        font-size: 22px;
+        font-weight: 600;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        letter-spacing: 1px;
+    }
+
+    /* 悬停效果 */
+    .generate-companion-btn:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(102, 126, 234, 0.5);
+        background: linear-gradient(135deg, #5a6fd1 0%, #6a3093 100%);
+    }
+
+    /* 点击效果 */
+    .generate-companion-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.6);
+    }
+
+    /* 脉冲动画效果 */
+    .generate-companion-btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .generate-companion-btn:hover::after {
+        opacity: 1;
+    }
+
+
+</style>
+
+
+
+
+<div id="bottom-frame" class="bottom-frame">
+    <div class="frame-content">
+        <p>《中国饮食文化——民族饮食文化的五大特性》</p>
+        <p>右侧是AI可以随时与他聊天互动哦~~</p>
+    </div>
+</div>
+
+
+
+
+    <script src="chat.js"></script>
+    <script src="事件监听与数据收集.js"></script>
+    <script src="交互日志显示.js"></script>
+    <script src="热力图数据生成.js"></script>
+    <script>
+        // 添加页面卸载事件监听
+        window.addEventListener('beforeunload', function() {
+            // 记录页面关闭事件
+            const timestamp = Date.now();
+            const videoTime = document.getElementById('video-player')?.currentTime || 0;
+            interactionData.playEvents.push({
+                type: 'over',
+                timestamp: timestamp,
+                videoTime: videoTime,
+                content: '页面关闭/刷新'
+            });
+
+            // 保存日志和热力图
+            saveInteractionLogToFile();
+            saveHeatmapToFile();
+        });
+    </script>
+</body>
+</html>

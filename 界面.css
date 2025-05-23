@@ -1,0 +1,46 @@
+/* 交互日志样式 */
+.interaction-log {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.log-section {
+    margin-bottom: 15px;
+}
+
+.log-section h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+/*热力图容器样式*/
+.heatmap-container {
+    position: fixed;
+    bottom: 20px;
+    right: auto; /* 改为靠右 */
+    left: 20px;  /* 避免 left 与 right 冲突 */
+    transform: none; /* 不再水平居中 */
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1000;
+    max-width: 600px; /* 控制整体容器大小 */
+}
+
+.heatmap-container img {
+    max-width: 100%;     /* 填满容器 */
+    max-height: 500px;   /* 缩小热力图显示区域 */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
